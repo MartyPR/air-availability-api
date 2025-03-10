@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -35,10 +36,13 @@ public class FlightEntity {
     @Column(nullable = false)
     private Date arrivalTime;
     private String status;
+    @ManyToOne
     @JoinColumn(name = "price_id")
     private PriceEntity price;
+
     @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
     private List<SeatEntity> seats;
+    private Integer seatsCount;
 
     public FlightEntity(String flightNumber, String routeId, Date departureTime, Date arrivalTime, String status, PriceEntity price) {
         this.flightNumber = flightNumber;

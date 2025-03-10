@@ -13,13 +13,16 @@ import com.airsofka.flight.domain.flight.values.ArrivalTime;
 import com.airsofka.flight.domain.flight.values.DepartureTime;
 import com.airsofka.flight.domain.flight.values.FlightId;
 import com.airsofka.flight.domain.flight.values.FlightNumber;
+
 import com.airsofka.flight.domain.flight.values.IsAvailable;
 import com.airsofka.flight.domain.flight.values.PriceSeat;
 import com.airsofka.flight.domain.flight.values.Prices;
 import com.airsofka.flight.domain.flight.values.RouteId;
+
 import com.airsofka.flight.domain.flight.values.SeatClass;
 import com.airsofka.flight.domain.flight.values.SeatId;
 import com.airsofka.flight.domain.flight.values.SeatInfo;
+
 import com.airsofka.flight.domain.flight.values.SeatNumber;
 import com.airsofka.flight.domain.flight.values.StatusFlight;
 import com.airsofka.flight.domain.flight.values.TotalSeats;
@@ -182,11 +185,11 @@ public class Flight extends AggregateRoot<FlightId> {
 
     private SeatInfo getSeatClassAndPrice(int row) {
         return switch (row) {
-            case 1, 2, 3, 4 -> new SeatInfo("Business Class", 150.0);
-            case 5, 6, 7, 8 -> new SeatInfo("Economy Extra", 120.0);
-            case 9, 10, 11, 19, 20 -> new SeatInfo("Favorable", 100.0);
-            case 17, 18 -> new SeatInfo("Exit", 130.0);
-            case 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33 -> new SeatInfo("Regular", 80.0);
+            case 1, 2, 3, 4 -> new SeatInfo("Business Class", getPrices().getPriceStandar()*0.40);
+            case 5, 6, 7, 8 -> new SeatInfo("Economy Extra", getPrices().getPriceStandar()*0.30);
+            case 9, 10, 11, 19, 20 -> new SeatInfo("Favorable", getPrices().getPriceStandar()*0.20);
+            case 17, 18 -> new SeatInfo("Exit", getPrices().getPriceStandar()*0.25);
+            case 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33 -> new SeatInfo("Regular", getPrices().getPriceStandar()*0.1);
             default -> throw new IllegalArgumentException("row no available: " + row);
         };
     }

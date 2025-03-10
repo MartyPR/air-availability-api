@@ -1,5 +1,8 @@
 package com.airsofka.flight.application.shared.flight;
 
+
+
+
 import com.airsofka.flight.domain.flight.Flight;
 
 import java.util.stream.Collectors;
@@ -14,7 +17,7 @@ public class FlightMapper {
                 flight.getArrivalTime().getValue().toString(),
                 flight.getStatusFlight().getValue(),
                 new FlightResponse.PricesInfo(
-                        flight.getPrices() != null ? flight.getPrices().getAdultPrice() : 0.0,
+                        flight.getPrices() != null ? flight.getPrices().getPriceStandar() : 0.0,
                         flight.getPrices() != null ? flight.getPrices().getChildPrice() : 0.0,
                         flight.getPrices() != null ? flight.getPrices().getInfantPrice() : 0.0
                 )

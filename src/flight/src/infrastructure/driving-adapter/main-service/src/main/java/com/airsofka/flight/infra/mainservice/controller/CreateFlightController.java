@@ -1,6 +1,7 @@
 package com.airsofka.flight.infra.mainservice.controller;
 
 import com.airsofka.flight.application.flight.createFlight.CreateFlightRequest;
+
 import com.airsofka.flight.application.flight.createFlight.CreateFlightUseCase;
 import com.airsofka.flight.application.shared.flight.FlightResponse;
 import org.springframework.web.bind.annotation.PostMapping;

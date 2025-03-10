@@ -5,7 +5,6 @@ import com.airsofka.flight.domain.flight.entities.Seat;
 import com.airsofka.flight.domain.flight.values.IsAvailable;
 import com.airsofka.flight.domain.flight.values.PriceSeat;
 import com.airsofka.flight.domain.flight.values.SeatClass;
-import com.airsofka.flight.domain.flight.values.SeatId;
 import com.airsofka.flight.domain.flight.values.SeatNumber;
 import com.airsofka.flight.domain.flight.values.StatusFlight;
 import com.airsofka.infra.mongo.entities.FlightEntity;
@@ -22,7 +21,7 @@ public class FlightAdapter {
         entity.setFlightNumber(flight.getFlightNumber().getValue());
         entity.setDepartureTime(flight.getDepartureTime().getValue());
         entity.setArrivalTime(flight.getArrivalTime().getValue());
-        PriceEntity price = new PriceEntity(flight.getPrices().getAdultPrice());
+        PriceEntity price = new PriceEntity(flight.getPrices().getPriceStandar());
         entity.setPrice(price);
         entity.setRouteId(flight.getRouteId().getValue());
         entity.setStatus(flight.getStatusFlight().getValue());
@@ -38,6 +37,7 @@ public class FlightAdapter {
                 }
         ).collect(Collectors.toList());
         entity.setSeats(seatEntities);
+        entity.setSeatsCount(entity.getSeats().size());
         return entity;
     }
     public static Flight toDomain(FlightEntity entity) {
